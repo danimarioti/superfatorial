@@ -17,12 +17,14 @@ public class Janela extends javax.swing.JFrame {
 
     SuperFatorial sFat;
     SuperFatorialCached sCFat;
+    SuperFatorialDiskCached sDCFat;
     /**
      * Creates new form Janela
      */
     public Janela() {
         this.sFat = new SuperFatorial();
         this.sCFat = new SuperFatorialCached();
+        this.sDCFat = new SuperFatorialDiskCached();
         initComponents();
     }
 
@@ -35,11 +37,20 @@ public class Janela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        calcularSuperFatorialCached1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         valorEntrada = new javax.swing.JTextField();
         calcularSuperFatorialCached = new javax.swing.JButton();
         calcularSuperFatorial = new javax.swing.JButton();
         mostrarSupCached = new javax.swing.JButton();
+        calcularSuperFatorialDiskCached = new javax.swing.JButton();
+
+        calcularSuperFatorialCached1.setText("CALCULAR COM CACHED");
+        calcularSuperFatorialCached1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcularSuperFatorialCached1ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SuperFatorial");
@@ -74,28 +85,34 @@ public class Janela extends javax.swing.JFrame {
             }
         });
 
+        calcularSuperFatorialDiskCached.setText("CALCULAR COM DISCO");
+        calcularSuperFatorialDiskCached.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcularSuperFatorialDiskCachedActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(190, 190, 190)
-                        .addComponent(mostrarSupCached)
-                        .addContainerGap())
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addComponent(valorEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(26, 26, 26))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(calcularSuperFatorial)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(calcularSuperFatorialCached)
-                            .addContainerGap()))))
+                        .addComponent(mostrarSupCached))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(calcularSuperFatorial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(calcularSuperFatorialCached)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(calcularSuperFatorialDiskCached))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(valorEntrada)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +124,8 @@ public class Janela extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(calcularSuperFatorialCached)
-                    .addComponent(calcularSuperFatorial))
+                    .addComponent(calcularSuperFatorial)
+                    .addComponent(calcularSuperFatorialDiskCached))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mostrarSupCached)
                 .addContainerGap())
@@ -152,6 +170,23 @@ public class Janela extends javax.swing.JFrame {
         cachedTable.setVisible(true);
     }//GEN-LAST:event_mostrarSupCachedActionPerformed
 
+    private void calcularSuperFatorialCached1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcularSuperFatorialCached1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calcularSuperFatorialCached1ActionPerformed
+
+    private void calcularSuperFatorialDiskCachedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcularSuperFatorialDiskCachedActionPerformed
+        // TODO add your handling code here:
+        try {
+            JOptionPane.showMessageDialog(this, sDCFat.getSuperFatorial(Integer.valueOf(valorEntrada.getText())));
+        } catch (InputException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex);
+        } catch (NumberFormatException ex){
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, "valor não inteiro digitado");
+            JOptionPane.showMessageDialog(this, "Valor digitado não é um inteiro, tente novamente");
+        }
+    }//GEN-LAST:event_calcularSuperFatorialDiskCachedActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -190,6 +225,8 @@ public class Janela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton calcularSuperFatorial;
     private javax.swing.JButton calcularSuperFatorialCached;
+    private javax.swing.JButton calcularSuperFatorialCached1;
+    private javax.swing.JButton calcularSuperFatorialDiskCached;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton mostrarSupCached;
     private javax.swing.JTextField valorEntrada;
